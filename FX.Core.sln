@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Logging", "FX.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Tests", "FX.Core.Tests\FX.Core.Tests.csproj", "{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Resources", "FX.Core.Resources\FX.Core.Resources.csproj", "{744806D3-6762-48C5-9C60-0C3B23F992F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
