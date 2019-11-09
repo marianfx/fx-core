@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Common", "FX.Core.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Resources", "FX.Core.Resources\FX.Core.Resources.csproj", "{744806D3-6762-48C5-9C60-0C3B23F992F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Storage", "FX.Core.Storage\FX.Core.Storage.csproj", "{BF96EBA4-9C1D-4628-B513-178FD00A375F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
