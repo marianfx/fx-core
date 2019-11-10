@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="Models\" />
+    <Folder Include="Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FX.Core.IO\FX.Core.IO.csproj" />
+    <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
+  </ItemGroup>
+
+</Project>

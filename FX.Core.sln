@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Logging", "FX.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Tests", "FX.Core.Tests\FX.Core.Tests.csproj", "{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Chronos", "FX.Core.Chronos\FX.Core.Chronos.csproj", "{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Common", "FX.Core.Common\FX.Core.Common.csproj", "{997CB9C2-5DD2-4F2A-81FD-0222603AD349}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Resources", "FX.Core.Resources\FX.Core.Resources.csproj", "{744806D3-6762-48C5-9C60-0C3B23F992F4}"
@@ -33,6 +35,10 @@ Global
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}.Release|Any CPU.Build.0 = Release|Any CPU
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Release|Any CPU.ActiveCfg = Release|Any CPU
