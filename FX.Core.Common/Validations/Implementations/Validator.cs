@@ -13,9 +13,9 @@ namespace FX.Core.Common.Validations.Implementations
     public class Validator : IValidator
     {
         public List<string> Errors { get; set; } = new List<string>();
-        private BasicSettings _settings;
+        private ValidationSettings _settings;
 
-        public Validator(IOptions<BasicSettings> settings)
+        public Validator(IOptions<ValidationSettings> settings)
         {
             _settings = settings.Value;
         }
