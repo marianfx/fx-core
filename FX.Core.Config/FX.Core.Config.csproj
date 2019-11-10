@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NLog\Abstract\" />
+    <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
   </ItemGroup>
 
 </Project>

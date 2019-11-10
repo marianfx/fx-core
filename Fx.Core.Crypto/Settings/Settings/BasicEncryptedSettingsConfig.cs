@@ -1,12 +1,8 @@
-﻿using System.IO;
+﻿using FX.Core.Config.Settings.Settings;
 
 namespace Fx.Core.Crypto.Settings.Settings
 {
-    public class BasicEncryptedSettingsConfig
+    public class BasicEncryptedSettingsConfig: BasicSettingsConfig
     {
-        /// <summary>
-        /// The Settings path, relative to the application's data saver base path
-        /// </summary>
-        public string SettingsPath { get; set; } = "appsettings.json";
     }
 }

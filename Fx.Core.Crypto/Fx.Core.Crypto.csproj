@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FX.Core.Common\FX.Core.Common.csproj" />
+    <ProjectReference Include="..\FX.Core.Config\FX.Core.Config.csproj" />
     <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
   </ItemGroup>
 

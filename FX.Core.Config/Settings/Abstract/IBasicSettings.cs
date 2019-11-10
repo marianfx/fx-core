@@ -1,6 +1,6 @@
-﻿using FX.Core.Common.Settings.Models;
+﻿using FX.Core.Config.Settings.Models;
 
-namespace FX.Core.Common.Settings.Abstract
+namespace FX.Core.Config.Settings.Abstract
 {
     public interface IBasicSettings<TSettings>
         where TSettings: ISettingsObject

@@ -1,5 +1,5 @@
 using FluentAssertions;
-using FX.Core.Logging.NLog.Implementations;
+using FX.Core.Config.Logging.NLog.Implementations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 using System;

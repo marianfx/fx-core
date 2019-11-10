@@ -1,4 +1,4 @@
-﻿namespace FX.Core.Common.Settings.Models
+﻿namespace FX.Core.Config.Settings.Models
 {
     public interface ISettingsObject
     {

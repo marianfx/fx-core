@@ -1,4 +1,4 @@
-﻿using FX.Core.Common.Settings.Abstract;
+﻿using FX.Core.Config.Settings.Abstract;
 using FX.Core.Crypto.Settings.Models;
 
 namespace FX.Core.Crypto.Settings.Abstract

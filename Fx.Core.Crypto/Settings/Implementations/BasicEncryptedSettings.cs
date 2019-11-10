@@ -12,10 +12,10 @@ namespace FX.Core.Crypto.Settings.Implementations
     {
         public TSettings Settings { get; set; }
 
-        private readonly IDataSerializer _dataSaver;
-        private readonly BasicEncryptedSettingsConfig _config;
-        private readonly IEncryptor _encryptor;
-        private string _key;
+        protected readonly IDataSerializer _dataSaver;
+        protected readonly BasicEncryptedSettingsConfig _config;
+        protected readonly IEncryptor _encryptor;
+        protected string _key;
 
         public BasicEncryptedSettings(IDataSerializer dataSaver, 
             IOptions<BasicEncryptedSettingsConfig> options,

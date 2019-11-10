@@ -1,5 +1,5 @@
 ﻿using Fx.Core.Crypto.Abstract;
-using FX.Core.Common.Settings.Models;
+using FX.Core.Config.Settings.Models;
 using System;
 
 namespace FX.Core.Crypto.Settings.Models

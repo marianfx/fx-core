@@ -3,7 +3,7 @@ using NLog.Config;
 using System.Linq;
 using NL = NLog;
 
-namespace FX.Core.Logging.NLog.Implementations
+namespace FX.Core.Config.Logging.NLog.Implementations
 {
     public class LoggerFactory
     {

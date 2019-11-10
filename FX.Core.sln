@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.IO", "FX.Core.IO\FX.Core.IO.csproj", "{8E527483-4860-4EC6-972C-1B9CBCEE235E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Logging", "FX.Core.Logging\FX.Core.Logging.csproj", "{D46CB92A-4B30-44E2-9373-566988150009}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Tests", "FX.Core.Tests\FX.Core.Tests.csproj", "{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Chronos", "FX.Core.Chronos\FX.Core.Chronos.csproj", "{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}"
@@ -16,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Storage", "FX.Core.Storage\FX.Core.Storage.csproj", "{BF96EBA4-9C1D-4628-B513-178FD00A375F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Core.Crypto", "Fx.Core.Crypto\Fx.Core.Crypto.csproj", "{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Config", "FX.Core.Config\FX.Core.Config.csproj", "{2CA355A0-3390-400F-A82F-7934CFCDCBF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		{8E527483-4860-4EC6-972C-1B9CBCEE235E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E527483-4860-4EC6-972C-1B9CBCEE235E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E527483-4860-4EC6-972C-1B9CBCEE235E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D46CB92A-4B30-44E2-9373-566988150009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D46CB92A-4B30-44E2-9373-566988150009}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D46CB92A-4B30-44E2-9373-566988150009}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D46CB92A-4B30-44E2-9373-566988150009}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA355A0-3390-400F-A82F-7934CFCDCBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA355A0-3390-400F-A82F-7934CFCDCBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA355A0-3390-400F-A82F-7934CFCDCBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA355A0-3390-400F-A82F-7934CFCDCBF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
