@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FX.Core.Common\FX.Core.Common.csproj" />
+    <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
+  </ItemGroup>
+
+</Project>

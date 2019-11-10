@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Common", "FX.Core.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Storage", "FX.Core.Storage\FX.Core.Storage.csproj", "{BF96EBA4-9C1D-4628-B513-178FD00A375F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fx.Core.Crypto", "Fx.Core.Crypto\Fx.Core.Crypto.csproj", "{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D504A3-FD2D-4769-8E04-D6A7C34EA95C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
