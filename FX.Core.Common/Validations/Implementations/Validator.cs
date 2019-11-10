@@ -1,12 +1,12 @@
 ﻿using FX.Core.Common.Validations.Abstract;
 using System;
 using System.Collections.Generic;
-using FX.Core.Resources;
 using System.Globalization;
 using System.Linq;
 using FX.Core.Common.DataModel;
 using Microsoft.Extensions.Options;
 using FX.Core.Common.Settings;
+using FX.Core.Common.Localization;
 
 namespace FX.Core.Common.Validations.Implementations
 {
@@ -30,7 +30,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateObject(object value, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             if (value == null)
                 Errors.Add(message);
@@ -50,7 +50,7 @@ namespace FX.Core.Common.Validations.Implementations
         {
             culture = culture ?? CultureInfo.CurrentCulture;
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeAValidPositiveLongNumber);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeAValidPositiveLongNumber);
 
             if (string.IsNullOrWhiteSpace(value) || !ulong.TryParse(value, NumberStyles.Float, culture, out ulong result))
                 Errors.Add(message);
@@ -69,7 +69,7 @@ namespace FX.Core.Common.Validations.Implementations
         {
             culture = culture ?? CultureInfo.CurrentCulture;
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeAValidDoubleNumber);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeAValidDoubleNumber);
 
             if (string.IsNullOrWhiteSpace(value) || !double.TryParse(value, NumberStyles.Float, culture, out double result))
                 Errors.Add(message);
@@ -87,7 +87,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateString(string value, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             if (string.IsNullOrWhiteSpace(value))
                 Errors.Add(message);
@@ -114,7 +114,7 @@ namespace FX.Core.Common.Validations.Implementations
                 range = range.Select(r => r.ToUpper());
 
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {2} ({1})", valueName ?? AppLocalization.Value, string.Join(", ", range), AppLocalization.MustBeInRange);
+                            : string.Format("{0} {2} ({1})", valueName ?? Resources.Value, string.Join(", ", range), Resources.MustBeInRange);
 
             if (range != null && !range.Contains(value))
                 Errors.Add(message);
@@ -133,7 +133,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateArray<T>(IEnumerable<T> array, string arrayName, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", arrayName ?? AppLocalization.Array, AppLocalization.CannotBeNullOrEmpty);
+                            : string.Format("{0} {1}.", arrayName ?? Resources.Array, Resources.CannotBeNullOrEmpty);
 
             if (array == null || array.Count() == 0)
                 Errors.Add(message);
@@ -151,7 +151,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateDate(string value, out DateTime date, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             date = DateTime.Now.Date;
             if (string.IsNullOrWhiteSpace(value) || !DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
@@ -170,7 +170,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateDateExact(string value, out DateTime date, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             date = DateTime.Now.Date;
             if (string.IsNullOrWhiteSpace(value) || !DateTime.TryParseExact(value, _settings.AcceptedDateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTemp))
@@ -209,17 +209,17 @@ namespace FX.Core.Common.Validations.Implementations
                 case "<":
                     if (value == null || value.ToString().Length < length)
                         //Errors.Add(!string.IsNullOrWhiteSpace(customMessage) ? customMessage : $"{value} {Resources.LengthIsLessThan} {length}");
-                        Errors.Add(message + AppLocalization.LengthIsLessThan + length);
+                        Errors.Add(message + Resources.LengthIsLessThan + length);
                     break;
                 case "!=":
                     if (value == null || value.ToString().Length != length)
                         //Errors.Add(!string.IsNullOrWhiteSpace(customMessage) ? customMessage : $"{valueName ?? value} {Resources.LengthIsNotEqualTo} {length}");
-                        Errors.Add(message + AppLocalization.LengthIsNotEqualTo + length);
+                        Errors.Add(message + Resources.LengthIsNotEqualTo + length);
                     break;
                 case ">":
                     if (value == null || value.ToString().Length > length)
                         //Errors.Add(!string.IsNullOrWhiteSpace(customMessage) ? customMessage : $"{value} {Resources.LengthIsGreaterThan} {length}");
-                        Errors.Add(message + AppLocalization.LengthIsGreaterThan + length);
+                        Errors.Add(message + Resources.LengthIsGreaterThan + length);
                     break;
             }
 
@@ -236,7 +236,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateDescriptor(Descriptor value, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             if (value == null || value.IsEmpty())
                 Errors.Add(message);
@@ -254,7 +254,7 @@ namespace FX.Core.Common.Validations.Implementations
         public IValidator ValidateDescriptor(NDescriptor value, string valueName = null, string customMessage = null)
         {
             var message = !string.IsNullOrWhiteSpace(customMessage) ? customMessage
-                            : string.Format("{0} {1}.", valueName ?? AppLocalization.Value, AppLocalization.MustBeSpecified);
+                            : string.Format("{0} {1}.", valueName ?? Resources.Value, Resources.MustBeSpecified);
 
             if (value == null || value.IsEmpty())
                 Errors.Add(message);

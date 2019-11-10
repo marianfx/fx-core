@@ -1,8 +1,8 @@
-﻿using FX.Core.Common.Validations.Abstract;
+﻿using FX.Core.Common.Localization;
+using FX.Core.Common.Validations.Abstract;
 using FX.Core.IO.Files.Abstract;
 using FX.Core.IO.Files.Enums;
 using FX.Core.IO.Files.Settings;
-using FX.Core.Resources;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -34,7 +34,7 @@ namespace FX.Core.IO.Files.Implementations
 
         public FileInfo ValidateFile(string relativePath, string parentDirectory)
         {
-            var errors = _validator.ValidateString(relativePath, AppLocalization.File).GetErrors();
+            var errors = _validator.ValidateString(relativePath, Resources.File).GetErrors();
             if (errors.Count > 0)
                 throw new Exception(errors[0]);
 
@@ -42,7 +42,7 @@ namespace FX.Core.IO.Files.Implementations
             var fullStreamFile = Path.Combine(serverPath, relativePath);
             var fileInfo = new FileInfo(fullStreamFile);
             if (!fileInfo.Exists)
-                throw new Exception(AppLocalization.FileDoesNotExist);
+                throw new Exception(Resources.FileDoesNotExist);
 
             return fileInfo;
         }
@@ -54,7 +54,7 @@ namespace FX.Core.IO.Files.Implementations
 
             var fileInfoFrom = new FileInfo(fromServerPath);
             if (!fileInfoFrom.Exists)
-                throw new Exception("Source " + AppLocalization.FileDoesNotExist);
+                throw new Exception("Source " + Resources.FileDoesNotExist);
 
             if (File.Exists(toServerPath))
                 File.Delete(toServerPath);
@@ -69,7 +69,7 @@ namespace FX.Core.IO.Files.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception(AppLocalization.FileCannotBeCopied + " " + ex.Message);
+                throw new Exception(Resources.FileCannotBeCopied + " " + ex.Message);
             }
         }
 
@@ -80,7 +80,7 @@ namespace FX.Core.IO.Files.Implementations
 
             var fileInfoFrom = new FileInfo(fromServerPath);
             if (!fileInfoFrom.Exists)
-                throw new Exception("Source " + AppLocalization.FileDoesNotExist);
+                throw new Exception("Source " + Resources.FileDoesNotExist);
 
             if (File.Exists(toServerPath))
                 File.Delete(toServerPath);
@@ -101,7 +101,7 @@ namespace FX.Core.IO.Files.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception(AppLocalization.FileCannotBeCopied + " " + ex.Message);
+                throw new Exception(Resources.FileCannotBeCopied + " " + ex.Message);
             }
         }
 
@@ -110,7 +110,7 @@ namespace FX.Core.IO.Files.Implementations
         public FileStream GetFileStream(string relativePath, FileTypes fileType, string parentDirectory)
         {
             if (!_settings.FileMimeTypes.Keys.Contains(fileType))
-                throw new Exception(AppLocalization.UnknownFileType);
+                throw new Exception(Resources.UnknownFileType);
 
             var fileInfo = ValidateFile(relativePath, parentDirectory);
             CurrentFileName = fileInfo.Name;
@@ -122,7 +122,7 @@ namespace FX.Core.IO.Files.Implementations
         public async Task SaveFileFromForm(IFormFileCollection formFiles, string relativePath, string parentDirectory)
         {
             if (formFiles == null || formFiles.Count == 0 || formFiles[0].Length == 0)
-                throw new Exception(AppLocalization.NoFileSpecified);
+                throw new Exception(Resources.NoFileSpecified);
 
             var file = formFiles[0];
             var serverPath = Path.Combine(RootPath, parentDirectory);
@@ -139,7 +139,7 @@ namespace FX.Core.IO.Files.Implementations
             }
             catch (Exception ex)
             {
-                throw new Exception(AppLocalization.CannotAccessTheRequestedPath, ex);
+                throw new Exception(Resources.CannotAccessTheRequestedPath, ex);
             }
         }
         #endregion

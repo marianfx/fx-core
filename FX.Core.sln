@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.IO", "FX.Core.IO\FX.Core.IO.csproj", "{8E527483-4860-4EC6-972C-1B9CBCEE235E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.IO", "FX.Core.IO\FX.Core.IO.csproj", "{8E527483-4860-4EC6-972C-1B9CBCEE235E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Logging", "FX.Core.Logging\FX.Core.Logging.csproj", "{D46CB92A-4B30-44E2-9373-566988150009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Logging", "FX.Core.Logging\FX.Core.Logging.csproj", "{D46CB92A-4B30-44E2-9373-566988150009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Tests", "FX.Core.Tests\FX.Core.Tests.csproj", "{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Tests", "FX.Core.Tests\FX.Core.Tests.csproj", "{2946A91A-64A5-4B7F-9B9D-35FE376D8CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Chronos", "FX.Core.Chronos\FX.Core.Chronos.csproj", "{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Chronos", "FX.Core.Chronos\FX.Core.Chronos.csproj", "{2282BB36-CE53-4D81-A2E9-7A25ADC6A784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Common", "FX.Core.Common\FX.Core.Common.csproj", "{997CB9C2-5DD2-4F2A-81FD-0222603AD349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Common", "FX.Core.Common\FX.Core.Common.csproj", "{997CB9C2-5DD2-4F2A-81FD-0222603AD349}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Resources", "FX.Core.Resources\FX.Core.Resources.csproj", "{744806D3-6762-48C5-9C60-0C3B23F992F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FX.Core.Storage", "FX.Core.Storage\FX.Core.Storage.csproj", "{BF96EBA4-9C1D-4628-B513-178FD00A375F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FX.Core.Storage", "FX.Core.Storage\FX.Core.Storage.csproj", "{BF96EBA4-9C1D-4628-B513-178FD00A375F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +41,6 @@ Global
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{997CB9C2-5DD2-4F2A-81FD-0222603AD349}.Release|Any CPU.Build.0 = Release|Any CPU
-		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{744806D3-6762-48C5-9C60-0C3B23F992F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF96EBA4-9C1D-4628-B513-178FD00A375F}.Release|Any CPU.ActiveCfg = Release|Any CPU
