@@ -1,6 +1,8 @@
-﻿namespace FX.Core.Config.Settings.Settings
+﻿using FX.Core.Config.Settings.Abstract;
+
+namespace FX.Core.Config.Settings.Settings
 {
-    public class BasicSettingsConfig
+    public class BasicSettingsConfig: ISettingsConfig
     {
         /// <summary>
         /// The Settings path, relative to the application's data saver base path
