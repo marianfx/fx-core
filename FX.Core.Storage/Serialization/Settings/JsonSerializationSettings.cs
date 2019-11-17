@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace FX.Core.Storage.Serialization.Settings
 {
@@ -18,5 +15,10 @@ namespace FX.Core.Storage.Serialization.Settings
         /// Otherwise, the filename used will be {guid}.json
         /// </summary>
         public bool UseIdDirectlyAsName { get; set; } = false;
+
+        /// <summary>
+        /// Save the data in JSON format saving references (not writing data, but references)
+        /// </summary>
+        public bool PreserveReferences { get; set; } = false;
     }
 }

@@ -14,11 +14,18 @@ namespace FX.Core.Storage.Serialization.Implementations
     public class JsonDataSerializer : IDataSerializer
     {
         private readonly JsonSerializationSettings _settings;
+        private readonly JsonSerializer _serializer;
 
 
         public JsonDataSerializer(IOptions<JsonSerializationSettings> options)
         {
             _settings = options.Value;
+            _serializer = new JsonSerializer
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.None,
+                PreserveReferencesHandling = _settings.PreserveReferences ? PreserveReferencesHandling.All : PreserveReferencesHandling.None
+            };
         }
 
         public bool DataExists(string guid)
@@ -46,13 +53,7 @@ namespace FX.Core.Storage.Serialization.Implementations
             {
                 using (var reader = new JsonTextReader(new StreamReader(asyncFileStream)))
                 {
-                    var serializer = new JsonSerializer
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                        Formatting = Formatting.None,
-                        PreserveReferencesHandling = PreserveReferencesHandling.All
-                    };
-                    var output = serializer.Deserialize<T>(reader);
+                    var output = _serializer.Deserialize<T>(reader);
                     return output;
                 }
             }
@@ -76,13 +77,7 @@ namespace FX.Core.Storage.Serialization.Implementations
             {
                 using (var writer = new JsonTextWriter(new StreamWriter(asyncFileStream)))
                 {
-                    var serializer = new JsonSerializer
-                    {
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                        Formatting = Formatting.None,
-                        PreserveReferencesHandling = PreserveReferencesHandling.All
-                    };
-                    serializer.Serialize(writer, response);
+                    _serializer.Serialize(writer, response);
                     await writer.FlushAsync();
                 }
             }
