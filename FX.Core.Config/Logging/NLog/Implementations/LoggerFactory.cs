@@ -10,11 +10,27 @@ namespace FX.Core.Config.Logging.NLog.Implementations
         /// <summary>
         /// Reads the config file for NLog from an XML file (use if you don't want the default config load).
         /// </summary>
-        /// <param name="filePath"></param>
+        /// <param name="settingsPath"></param>
         /// <returns></returns>
-        public static LoggingConfiguration LoadConfigFromFile(string filePath)
+        public static LoggingConfiguration LoadConfigFromFile(string settingsPath)
         {
-            return new XmlLoggingConfiguration(filePath);
+            return new XmlLoggingConfiguration(settingsPath);
+        }
+
+
+        /// <summary>
+        /// Returns a console logger. Must be initialized with the path to the configuration file .
+        /// The configuration can be read:
+        /// - manually from the config file (with LoadConfigFromFile)
+        /// - initialized programatically 
+        /// - provided from LogManager.Configuration if in the application directory there's a nlog.config file
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static ILogger CreateConsoleLogger(string settingsPath)
+        {
+            var config = LoadConfigFromFile(settingsPath);
+            return CreateConsoleLogger(config);
         }
 
         /// <summary>
