@@ -21,7 +21,17 @@ namespace FX.Core.Common.Settings.Implementations
             _config = options.Value;
         }
 
-        public void LoadSettings()
+        public virtual ISettingsConfig GetConfig()
+        {
+            return _config;
+        }
+
+        public virtual bool CanLoadSettings()
+        {
+            return _dataSaver.DataExists(_config.SettingsPath);
+        }
+
+        public virtual void LoadSettings()
         {
             Settings = _dataSaver.GetData<TSettings>(_config.SettingsPath).GetAwaiter().GetResult();
             if (Settings == null)
@@ -31,7 +41,7 @@ namespace FX.Core.Common.Settings.Implementations
             Settings.Validate();
         }
 
-        public void SaveSettings()
+        public virtual void SaveSettings()
         {
             if (Settings == null)
                 throw new System.Exception("Settings not initialized, cannot save");
@@ -41,6 +51,12 @@ namespace FX.Core.Common.Settings.Implementations
 
             // encrypt
             _dataSaver.SaveDataAsync(Settings, _config.SettingsPath).GetAwaiter().GetResult();
+        }
+
+        public virtual void DeleteSettings()
+        {
+            if (_dataSaver.DataExists(_config.SettingsPath))
+                _dataSaver.DeleteDataAsync(_config.SettingsPath).GetAwaiter().GetResult();
         }
     }
 }

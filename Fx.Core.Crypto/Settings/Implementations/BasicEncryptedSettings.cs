@@ -1,5 +1,6 @@
 ﻿using Fx.Core.Crypto.Abstract;
 using Fx.Core.Crypto.Settings.Settings;
+using FX.Core.Common.Settings.Implementations;
 using FX.Core.Crypto.Settings.Abstract;
 using FX.Core.Crypto.Settings.Models;
 using FX.Core.Storage.Serialization.Abstract;
@@ -7,26 +8,20 @@ using Microsoft.Extensions.Options;
 
 namespace FX.Core.Crypto.Settings.Implementations
 {
-    public class BasicEncryptedSettings<TSettings> : IEncryptedSettings<TSettings>
+    public class BasicEncryptedSettings<TSettings> : BasicSettings<TSettings>, IEncryptedSettings<TSettings>
         where TSettings : class, IEncryptedSettingsObject<TSettings>
     {
-        public TSettings Settings { get; set; }
-
-        protected readonly IDataSerializer _dataSaver;
-        protected readonly BasicEncryptedSettingsConfig _config;
         protected readonly IEncryptor _encryptor;
         protected string _key;
 
         public BasicEncryptedSettings(IDataSerializer dataSaver, 
             IOptions<BasicEncryptedSettingsConfig> options,
-            IEncryptor encryptor)
+            IEncryptor encryptor): base(dataSaver, options)
         {
-            _dataSaver = dataSaver;
-            _config = options.Value;
             _encryptor = encryptor;
         }
 
-        public void LoadSettings()
+        public override void LoadSettings()
         {
             Settings = _dataSaver.GetData<TSettings>(_config.SettingsPath).GetAwaiter().GetResult();
             if (Settings == null)
@@ -42,7 +37,7 @@ namespace FX.Core.Crypto.Settings.Implementations
             Settings = Settings.Decrypt(_encryptor, _key);
         }
 
-        public void SaveSettings()
+        public override void SaveSettings()
         {
             if (Settings == null)
                 throw new System.Exception("Settings not initialized, cannot save");
