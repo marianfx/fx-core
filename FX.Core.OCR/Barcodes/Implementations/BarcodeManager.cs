@@ -16,10 +16,12 @@ namespace FX.Core.OCR.Barcodes.Implementations
     {
 
         private readonly ProcessingConfig _config;
+        private readonly IBitmapReader _bitmapReader;
 
-        public BarcodeManager(IOptions<ProcessingConfig> options)
+        public BarcodeManager(IOptions<ProcessingConfig> options, IBitmapReader bitmapReader)
         {
             _config = options.Value;
+            _bitmapReader = bitmapReader;
         }
 
         public IEnumerable<DecodeStatistics> ProcessAllFiles()
@@ -63,7 +65,7 @@ namespace FX.Core.OCR.Barcodes.Implementations
                             barcodeConfig.FilePath = file;
                             var options = Options.Create(barcodeConfig);
 
-                            var decoder = new BarcodeDecoder(options);
+                            var decoder = new BarcodeDecoder(options, _bitmapReader);
                             decoder.StartDecoding();
                             var result = decoder.GetDecodeResult();
 

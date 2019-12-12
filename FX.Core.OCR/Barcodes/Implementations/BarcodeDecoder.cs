@@ -21,14 +21,15 @@ namespace FX.Core.OCR.Barcodes.Implementations
         private readonly BarcodeConfig _config;
         private readonly ZXing.BarcodeReader barcodeReader;
         private long _timeStart;
+        private readonly IBitmapReader _bitmapReader;
 
         private readonly IList<DecodeResult> results;
         private DecodeStatistics statistics;
 
-        public BarcodeDecoder(IOptions<BarcodeConfig> optionsAccessor)
+        public BarcodeDecoder(IOptions<BarcodeConfig> optionsAccessor, IBitmapReader bitmapReader)
         {
             _config = optionsAccessor.Value;
-
+            _bitmapReader = bitmapReader;
             barcodeReader = new ZXing.BarcodeReader
             {
                 AutoRotate = true,
@@ -49,17 +50,7 @@ namespace FX.Core.OCR.Barcodes.Implementations
                 throw new Exception("File not found!");
 
             // initialize with list of images based on format
-            var listOfBitmaps = new List<Bitmap>();
-            if (FileUtils.IsTiff(_config.FilePath))
-            {
-                listOfBitmaps = TiffUtils.GetBitmapsFromTiff(_config.FilePath);
-            }
-            else
-            {
-                var singleImage = (Bitmap)Bitmap.FromFile(_config.FilePath);
-                listOfBitmaps.Add(singleImage);
-            }
-
+            var listOfBitmaps = _bitmapReader.ReadBitmaps(_config.FilePath);
             statistics = new DecodeStatistics() { PreprocessDuration = new TimeSpan(DateTime.Now.Ticks - _timeStart) };
             Decode(listOfBitmaps);
         }
