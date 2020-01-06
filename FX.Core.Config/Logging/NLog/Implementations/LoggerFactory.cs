@@ -34,6 +34,16 @@ namespace FX.Core.Config.Logging.NLog.Implementations
         }
 
         /// <summary>
+        /// Validates and saves the configuration loaded
+        /// </summary>
+        /// <param name="config"></param>
+        protected static void Validate(LoggingConfiguration config)
+        {
+            if (LogManager.Configuration == null)
+                throw new System.Exception("NLog initialized with invalid config");
+        }
+
+        /// <summary>
         /// Returns a console logger. Must be initialized with the configuration.
         /// The configuration can be read:
         /// - manually from the config file (with LoadConfigFromFile)
@@ -44,20 +54,17 @@ namespace FX.Core.Config.Logging.NLog.Implementations
         /// <returns></returns>
         public static ILogger CreateConsoleLogger(LoggingConfiguration config)
         {
-            if (config != null)
-                LogManager.Configuration = config;
+            Validate(config);
 
-            if (LogManager.Configuration == null)
-                throw new System.Exception("NLog initialized with invalid config");
-
-            var target = LogManager.Configuration.AllTargets.FirstOrDefault(x => x.Name == "logConsole");
+            var target = config.AllTargets.FirstOrDefault(x => x.Name == "logConsole") as NL.Targets.ConsoleTarget;
 
             if (target == null) // add console target if not configured
             {
-                var logConsole = new NL.Targets.ConsoleTarget("logConsole");
-                LogManager.Configuration.AddRule(LogLevel.Trace, LogLevel.Fatal, logConsole);
+                target = new NL.Targets.ConsoleTarget("logConsole");
             }
+            config.AddRule(LogLevel.Trace, LogLevel.Fatal, target);
 
+            LogManager.Configuration = config;
             return LogManager.GetCurrentClassLogger();
         } 
     }
