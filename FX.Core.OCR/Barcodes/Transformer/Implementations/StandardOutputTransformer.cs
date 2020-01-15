@@ -152,7 +152,7 @@ namespace FX.Core.OCR.Barcodes.Transformer.Implementations
 
             if (match != null)
             {
-                var groups = match.Groups.ToArray();
+                var groups = match.Groups.OfType<Group>().ToArray();
                 if (groups.Length > 1 && !string.IsNullOrWhiteSpace(groups[1].Value))
                 {
                     docName = groups[1].Value;

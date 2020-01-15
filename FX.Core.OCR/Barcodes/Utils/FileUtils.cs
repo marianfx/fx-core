@@ -24,9 +24,11 @@ namespace FX.Core.OCR.Barcodes.Utils
         /// <returns></returns>
         public static byte[] ImageToByte2(Image img)
         {
-            using var stream = new MemoryStream();
-            img.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
-            return stream.ToArray();
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+                return stream.ToArray();
+            }
         }
     }
 }
