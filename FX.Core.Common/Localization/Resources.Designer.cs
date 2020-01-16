@@ -88,6 +88,15 @@ namespace FX.Core.Common.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot convert data into the specified type.
+        /// </summary>
+        public static string CannotConvertToTheSpecifiedType {
+            get {
+                return ResourceManager.GetString("CannotConvertToTheSpecifiedType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string File {
@@ -111,6 +120,15 @@ namespace FX.Core.Common.Localization {
         public static string FileDoesNotExist {
             get {
                 return ResourceManager.GetString("FileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid column count.
+        /// </summary>
+        public static string InvalidColumnCount {
+            get {
+                return ResourceManager.GetString("InvalidColumnCount", resourceCulture);
             }
         }
         
