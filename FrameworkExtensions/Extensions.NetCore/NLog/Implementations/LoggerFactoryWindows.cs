@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FX.Core.Core3Extensions.NLog.Implementations
+namespace FrameworkExtensions.Extensions.NetCore.NLog.Implementations
 {
     public class LoggerFactoryWindows: LoggerFactory
     {
