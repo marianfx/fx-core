@@ -14,4 +14,10 @@
     <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="coresettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

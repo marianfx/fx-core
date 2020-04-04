@@ -10,6 +10,7 @@ namespace FX.Core.Automation.Settings
         public int WindowWidth { get; set; }
         public int WindowHeight { get; set; }
         public int TIME_TO_WAIT { get; set; }
+        public int TYPE_DELAY { get; set; }
 
         // selectors
         public string SIGNIN_SELECTOR { get; set; }

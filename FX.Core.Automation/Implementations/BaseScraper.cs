@@ -53,11 +53,10 @@ namespace FX.Core.Automation.Implementations
             Parameters = parameters;
 
             // initialize browser
-
             // prepare launch options
             LaunchOptions = new LaunchOptions() { Headless = appSettings.Headless };
             ViewPortOptions = new ViewPortOptions() { Width = appSettings.WindowWidth, Height = appSettings.WindowHeight };
-            TypeOptions = new TypeOptions() { Delay = 50 };
+            TypeOptions = new TypeOptions() { Delay = appSettings.TYPE_DELAY };
 
             // get chromium reference (not async, downloads it, blocks everything while downloading)
             var revision = new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision).Result;

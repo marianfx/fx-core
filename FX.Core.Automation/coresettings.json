@@ -1,0 +1,14 @@
+{
+  "AppUrl": "https://the-application.com/",
+  "ErrorUrl": "https://the-application.com/error",
+  "Headless": false,
+  "WindowWidth": 1366,
+  "WindowHeight": 768,
+  "TIME_TO_WAIT": 500,
+  "TYPE_DELAY": 50,
+  "SIGNIN_SELECTOR": ".signin",
+  "LOGIN_FORM_SELECTOR": "form[name='signUpForm']",
+  "LOGIN_USER_SELECTOR": "form[name='signUpForm'] input[name = 'email']",
+  "LOGIN_PASS_SELECTOR": "form[name='signUpForm'] input[name='password']",
+  "LOGIN_SUBMIT_SELECTOR": "form[name='signUpForm'] button[type='submit']"
+}
