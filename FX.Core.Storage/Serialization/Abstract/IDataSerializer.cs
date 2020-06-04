@@ -4,13 +4,12 @@ namespace FX.Core.Storage.Serialization.Abstract
 {
     public interface IDataSerializer
     {
-
         /// <summary>
         /// Specifies if a data (represented by an ID) exista as Saved
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        bool DataExists(string guid);
+        Task<bool> DataExists(string guid);
 
         /// <summary>
         /// Returns data (of type T) from storage, if it exists
@@ -33,6 +32,6 @@ namespace FX.Core.Storage.Serialization.Abstract
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        Task DeleteDataAsync(string guid);
+        Task DeleteDataSilentAsync(string guid);
     }
 }

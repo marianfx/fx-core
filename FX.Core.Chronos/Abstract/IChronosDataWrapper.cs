@@ -54,7 +54,7 @@ namespace FX.Core.Chronos.Abstract
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        bool ContainsData(string id);
+        Task<bool> ContainsData(string id);
 
         /// <summary>
         /// Searches through data with state 'calculated' and returns (if if finds any) the one with the specified ID. The method does a serializing (data is stored in a storage mechanism, from where it's read and serialized in C# T object).

@@ -147,9 +147,9 @@ namespace FX.Core.Chronos.Real
 
 
         #region Handling Data
-        public bool ContainsData(string id)
+        public async Task<bool> ContainsData(string id)
         {
-            return _dataSaver.DataExists(id);
+            return await _dataSaver.DataExists(id);
         }
 
         public async Task<T> GetData<T>(string id) where T : class
@@ -215,7 +215,7 @@ namespace FX.Core.Chronos.Real
             ClearOldData();
 
             // clear data
-            await _dataSaver.DeleteDataAsync(id);
+            await _dataSaver.DeleteDataSilentAsync(id);
 
             // clean used data
             GC.Collect();

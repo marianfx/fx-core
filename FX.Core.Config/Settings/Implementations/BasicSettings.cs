@@ -3,6 +3,7 @@ using FX.Core.Config.Settings.Models;
 using FX.Core.Config.Settings.Settings;
 using FX.Core.Storage.Serialization.Abstract;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace FX.Core.Common.Settings.Implementations
 {
@@ -26,14 +27,14 @@ namespace FX.Core.Common.Settings.Implementations
             return _config;
         }
 
-        public virtual bool CanLoadSettings()
+        public virtual async Task<bool> CanLoadSettings()
         {
-            return _dataSaver.DataExists(_config.SettingsPath);
+            return await _dataSaver.DataExists(_config.SettingsPath);
         }
 
-        public virtual void LoadSettings()
+        public virtual async Task LoadSettings()
         {
-            Settings = _dataSaver.GetData<TSettings>(_config.SettingsPath).GetAwaiter().GetResult();
+            Settings = await _dataSaver.GetData<TSettings>(_config.SettingsPath);
             if (Settings == null)
                 throw new System.Exception("Cannot read settings");
 
@@ -41,7 +42,7 @@ namespace FX.Core.Common.Settings.Implementations
             Settings.Validate();
         }
 
-        public virtual void SaveSettings()
+        public virtual async Task SaveSettings()
         {
             if (Settings == null)
                 throw new System.Exception("Settings not initialized, cannot save");
@@ -49,14 +50,14 @@ namespace FX.Core.Common.Settings.Implementations
             // validate
             Settings.Validate();
 
-            // encrypt
-            _dataSaver.SaveDataAsync(Settings, _config.SettingsPath).GetAwaiter().GetResult();
+            // save
+            await _dataSaver.SaveDataAsync(Settings, _config.SettingsPath);
         }
 
-        public virtual void DeleteSettings()
+        public virtual async Task DeleteSettings()
         {
-            if (_dataSaver.DataExists(_config.SettingsPath))
-                _dataSaver.DeleteDataAsync(_config.SettingsPath).GetAwaiter().GetResult();
+            if (await _dataSaver.DataExists(_config.SettingsPath))
+                await _dataSaver.DeleteDataSilentAsync(_config.SettingsPath);
         }
     }
 }

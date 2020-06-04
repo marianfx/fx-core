@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FX.Core.Storage.Serialization.Implementations
 {
+    /// <summary>
+    /// Serializes data in memory, using thread-safe locks
+    /// </summary>
     public class MemoryDataSerializer: IDataSerializer, IDisposable
     {
         private ReaderWriterLockSlim _activeDataLock;
@@ -17,12 +20,13 @@ namespace FX.Core.Storage.Serialization.Implementations
             _temporaryData = new Dictionary<string, object>();
         }
 
-        public bool DataExists(string guid)
+        public Task<bool> DataExists(string guid)
         {
             _activeDataLock.EnterReadLock();
             try
             {
-                return !(_temporaryData == null || !_temporaryData.ContainsKey(guid));
+                var exists = !(_temporaryData == null || !_temporaryData.ContainsKey(guid));
+                return Task.FromResult(exists);
             }
             finally
             {
@@ -32,7 +36,7 @@ namespace FX.Core.Storage.Serialization.Implementations
 
         public Task<T> GetData<T>(string guid) where T : class
         {
-            if (!DataExists(guid))
+            if (!DataExists(guid).GetAwaiter().GetResult())
                 return Task.FromResult<T>(null);
 
             _activeDataLock.EnterReadLock();
@@ -64,7 +68,7 @@ namespace FX.Core.Storage.Serialization.Implementations
             return Task.CompletedTask;
         }
 
-        public Task DeleteDataAsync(string guid)
+        public Task DeleteDataSilentAsync(string guid)
         {
             _activeDataLock.EnterWriteLock();
             try

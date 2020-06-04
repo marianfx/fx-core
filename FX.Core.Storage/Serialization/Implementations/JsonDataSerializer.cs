@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using FX.Core.Storage.Serialization.Abstract;
 using FX.Core.Storage.Serialization.Settings;
@@ -28,30 +29,30 @@ namespace FX.Core.Storage.Serialization.Implementations
             };
         }
 
-        public bool DataExists(string guid)
+        public async Task<bool> DataExists(string identifier)
         {
-            var fileName = _settings.UseIdDirectlyAsName ? guid : guid + ".json";
+            var fileName = _settings.UseIdDirectlyAsName ? identifier : identifier + ".json";
             var serverPath = Path.Combine(_settings.RootPath, fileName);
 
-            return DataExistsOnPath(serverPath);
+            return await DataExistsOnPath(serverPath);
         }
 
-        private static bool DataExistsOnPath(string serverPath)
+        private static async Task<bool> DataExistsOnPath(string serverPath)
         {
-            return File.Exists(serverPath);
+            return await Task.Run(() => File.Exists(serverPath));
         }
 
-        public async Task<T> GetData<T>(string guid) where T : class
+        public async Task<T> GetData<T>(string identifier) where T : class
         {
-            var fileName = _settings.UseIdDirectlyAsName ? guid : guid + ".json";
+            var fileName = _settings.UseIdDirectlyAsName ? identifier : identifier + ".json";
             var serverPath = Path.Combine(_settings.RootPath, fileName);
 
-            if (!DataExistsOnPath(serverPath))
+            if (!await DataExistsOnPath(serverPath))
                 return null;
 
             using (var asyncFileStream = new FileStream(serverPath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, true))
             {
-                using (var reader = new JsonTextReader(new StreamReader(asyncFileStream)))
+                using (var reader = new JsonTextReader(new StreamReader(asyncFileStream, Encoding.UTF8)))
                 {
                     var output = _serializer.Deserialize<T>(reader);
                     return output;
@@ -64,8 +65,8 @@ namespace FX.Core.Storage.Serialization.Implementations
             var fileName = _settings.UseIdDirectlyAsName ? identifier : identifier + ".json";
             var serverPath = Path.Combine(_settings.RootPath, fileName);
 
-            if (File.Exists(serverPath))
-                File.Delete(serverPath);
+            if (await DataExistsOnPath(serverPath))
+                await DeleteDataSilentAsync(identifier);
 
             // make sure data directory exists
             var dataFolderPath = _settings.RootPath;
@@ -75,7 +76,7 @@ namespace FX.Core.Storage.Serialization.Implementations
             // write asynchronously to a file
             using (var asyncFileStream = new FileStream(serverPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write, 4096, true))
             {
-                using (var writer = new JsonTextWriter(new StreamWriter(asyncFileStream)))
+                using (var writer = new JsonTextWriter(new StreamWriter(asyncFileStream, Encoding.UTF8)))
                 {
                     _serializer.Serialize(writer, response);
                     await writer.FlushAsync();
@@ -83,14 +84,14 @@ namespace FX.Core.Storage.Serialization.Implementations
             }
         }
 
-        public async Task DeleteDataAsync(string guid)
+        public async Task DeleteDataSilentAsync(string identifier)
         {
-            var fileName = _settings.UseIdDirectlyAsName ? guid : guid + ".json";
+            var fileName = _settings.UseIdDirectlyAsName ? identifier : identifier + ".json";
             var serverPath = Path.Combine(_settings.RootPath, fileName);
 
             try
             {
-                File.Delete(serverPath);
+                await Task.Run(() => File.Delete(serverPath));
             }
             catch { }
         }

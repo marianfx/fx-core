@@ -5,6 +5,7 @@ using FX.Core.Crypto.Settings.Abstract;
 using FX.Core.Crypto.Settings.Models;
 using FX.Core.Storage.Serialization.Abstract;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace FX.Core.Crypto.Settings.Implementations
 {
@@ -21,9 +22,9 @@ namespace FX.Core.Crypto.Settings.Implementations
             _encryptor = encryptor;
         }
 
-        public override void LoadSettings()
+        public override async Task LoadSettings()
         {
-            Settings = _dataSaver.GetData<TSettings>(_config.SettingsPath).GetAwaiter().GetResult();
+            Settings = await _dataSaver.GetData<TSettings>(_config.SettingsPath);
             if (Settings == null)
                 throw new System.Exception("Cannot read settings");
 
@@ -37,7 +38,7 @@ namespace FX.Core.Crypto.Settings.Implementations
             Settings = Settings.Decrypt(_encryptor, _key);
         }
 
-        public override void SaveSettings()
+        public override async Task SaveSettings()
         {
             if (Settings == null)
                 throw new System.Exception("Settings not initialized, cannot save");
@@ -47,7 +48,7 @@ namespace FX.Core.Crypto.Settings.Implementations
 
             // encrypt
             var encrypted = Settings.Encrypt(_encryptor, _key);
-            _dataSaver.SaveDataAsync(encrypted, _config.SettingsPath).GetAwaiter().GetResult();
+            await _dataSaver.SaveDataAsync(encrypted, _config.SettingsPath);
         }
 
         public void SetKey(string key)

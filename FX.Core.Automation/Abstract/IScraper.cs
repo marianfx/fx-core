@@ -11,28 +11,7 @@ namespace FX.Core.Automation.Abstract
         /// Initializes all the settings, instances and parameters that this instance requires.
         /// </summary>
         /// <param name="parameters">Holds various configuration parameters</param>
-        void Initialize(P parameters);
-
-        /// <summary>
-        /// Does all the possible steps to make sure that the user is logged in.
-        /// For example: checks if it is already logged in, runs the login workflow etc.
-        /// Throws exception if cannot proceed.
-        /// </summary>
-        /// <returns></returns>
-        Task DoLoginWorkflowAsync();
-
-        /// <summary>
-        /// Runs the login steps (from zero, does not care of previous information).
-        /// For more complex steps, use 'DoLoginWorkflowAsync'
-        /// </summary>
-        /// <returns></returns>
-        Task LoginAsync();
-
-        /// <summary>
-        /// Returns true if the user is already authenticated on the website
-        /// </summary>
-        /// <returns></returns>
-        Task<bool> IsLoggedIn();
+        Task Initialize(P parameters);
         
         /// <summary>
         /// Closes the open browser (shut down)
