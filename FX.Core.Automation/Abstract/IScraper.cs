@@ -20,6 +20,36 @@ namespace FX.Core.Automation.Abstract
         Task CloseBrowser();
 
         /// <summary>
+        /// Triggers navigation to a page url; If force is specified, it ignores if the page is already there (otherwise, if already on the page, does nothing)
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="force"></param>
+        /// <returns></returns>
+        Task NavigateToPage(string url, bool force = false);
+
+        /// <summary>
+        /// Wrapper around click method on the page
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        Task ExecuteClick(string selector);
+
+        /// <summary>
+        /// Finds an input by selector and inserts the given text in it (wrapper)
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        Task TypeInInput(string selector, string text);
+
+        /// <summary>
+        /// Makes the page wait for no reason
+        /// </summary>
+        /// <param name="milliseconds"></param>
+        /// <returns></returns>
+        Task WaitABit(int milliseconds);
+
+        /// <summary>
         /// Returns the Scroll Height of the browser's view port
         /// </summary>
         /// <param name="selector"></param>

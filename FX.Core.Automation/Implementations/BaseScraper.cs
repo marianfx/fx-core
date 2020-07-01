@@ -71,6 +71,34 @@ namespace FX.Core.Automation.Implementations
             Browser = null;
         }
 
+        public virtual async Task NavigateToPage(string url, bool force = false)
+        {
+            var appSettings = SettingsManager.Settings;
+            if (force || CurrentPage.Url != appSettings.AppUrl)
+                await CurrentPage.GoToAsync(appSettings.AppUrl);
+        }
+
+        public virtual async Task ExecuteClick(string selector)
+        {
+            await CurrentPage.ClickAsync(selector);
+        }
+
+        public virtual async Task TypeInInput(string selector, string text)
+        {
+            var emailInput = await CurrentPage.WaitForSelectorAsync(selector);
+            if (emailInput == null)
+                throw new Exception(string.Format("Input with selector {0} not found", selector));
+
+            var appSettings = SettingsManager.Settings;
+            await emailInput.TypeAsync(text, TypeOptions);
+            await CurrentPage.WaitForTimeoutAsync(appSettings.TIME_TO_WAIT);
+        }
+
+        public virtual async Task WaitABit(int milliseconds)
+        {
+            await CurrentPage.WaitForTimeoutAsync(milliseconds);
+        }
+
         public virtual async Task<double> GetCurrentScrollHeight(string selector)
         {
             var chSelectorFunc = ScraperConstants.FUNC_SELECT_SIMPLE.Replace("{{SPECIAL}}", ".scrollHeight");
@@ -123,7 +151,8 @@ namespace FX.Core.Automation.Implementations
 
         public virtual void Dispose()
         {
-            CloseBrowser().Wait();
+            Task.Run(async () => await CloseBrowser())
+                .ConfigureAwait(false).GetAwaiter().GetResult();
         }
     }
 }
