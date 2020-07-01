@@ -63,8 +63,6 @@ namespace FX.Core.Automation.Implementations
             await CurrentPage.SetViewportAsync(ViewPortOptions);
         }
 
-
-
         public virtual async Task CloseBrowser()
         {
             await Browser.CloseAsync();

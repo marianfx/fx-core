@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FX.Core.Config\FX.Core.Config.csproj" />
+    <ProjectReference Include="..\Fx.Core.Crypto\Fx.Core.Crypto.csproj" />
     <ProjectReference Include="..\FX.Core.Storage\FX.Core.Storage.csproj" />
   </ItemGroup>
 
