@@ -2,6 +2,7 @@
 using FX.Core.Automation.Abstract.Strategies;
 using FX.Core.Automation.Models;
 using FX.Core.Automation.Settings;
+using FX.Core.Config.Settings.Abstract;
 using FX.Core.Storage.Serialization.Abstract;
 using NLog;
 using PuppeteerSharp;
@@ -18,8 +19,10 @@ namespace FX.Core.Automation.Implementations
     {
         protected CookieParam[] CurrentPageCookies;
 
+        public BaseScrapperWithCookieLogin() : base() { }
+
         public BaseScrapperWithCookieLogin(ILogger logger,
-            IScraperSettingsManager<S> settingsManager,
+            IBasicSettingsManager<S> settingsManager,
             IDataSerializer dataSerializer,
             ILoginStrategy<P, T> loginStrategy) 
             : base(logger, settingsManager, dataSerializer, loginStrategy)

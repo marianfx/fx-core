@@ -2,6 +2,7 @@
 using FX.Core.Automation.Abstract.Strategies;
 using FX.Core.Automation.Models;
 using FX.Core.Automation.Settings;
+using FX.Core.Config.Settings.Abstract;
 using FX.Core.Storage.Serialization.Abstract;
 using NLog;
 using System;
@@ -14,10 +15,12 @@ namespace FX.Core.Automation.Implementations
         where S : CoreScrapperSettings
         where T : LoginStrategyParametersBase
     {
-        protected ILoginStrategy<P, T> LoginStrategy;
+        public ILoginStrategy<P, T> LoginStrategy { get; set; }
+
+        public BaseScrapperWithLogin() : base() { }
 
         public BaseScrapperWithLogin(ILogger logger,
-            IScraperSettingsManager<S> settingsManager,
+            IBasicSettingsManager<S> settingsManager,
             IDataSerializer dataSerializer,
             ILoginStrategy<P, T> loginStrategy)
             : base(logger, settingsManager, dataSerializer)

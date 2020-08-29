@@ -3,28 +3,25 @@ using Fx.Core.Crypto.Settings.Settings;
 using FX.Core.Common.Settings.Implementations;
 using FX.Core.Crypto.Settings.Abstract;
 using FX.Core.Crypto.Settings.Models;
-using FX.Core.Storage.Serialization.Abstract;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace FX.Core.Crypto.Settings.Implementations
 {
-    public class BasicEncryptedSettings<TSettings> : BasicSettings<TSettings>, IEncryptedSettings<TSettings>
+    public class BasicEncryptedSettingsManager<TSettings> : BasicSettingsManager<TSettings>, IEncryptedSettingsManager<TSettings>
         where TSettings : class, IEncryptedSettingsObject<TSettings>
     {
         protected readonly IEncryptor _encryptor;
         protected string _key;
 
-        public BasicEncryptedSettings(IDataSerializer dataSaver, 
-            IOptions<BasicEncryptedSettingsConfig> options,
-            IEncryptor encryptor): base(dataSaver, options)
+        public BasicEncryptedSettingsManager(IOptions<BasicEncryptedSettingsConfig> options): base(options)
         {
-            _encryptor = encryptor;
+            _encryptor = options.Value.Encryptor;
         }
 
         public override async Task LoadSettings()
         {
-            Settings = await _dataSaver.GetData<TSettings>(_config.SettingsPath);
+            Settings = await _dataSaver.GetData<TSettings>(_config.Path);
             if (Settings == null)
                 throw new System.Exception("Cannot read settings");
 
@@ -48,7 +45,7 @@ namespace FX.Core.Crypto.Settings.Implementations
 
             // encrypt
             var encrypted = Settings.Encrypt(_encryptor, _key);
-            await _dataSaver.SaveDataAsync(encrypted, _config.SettingsPath);
+            await _dataSaver.SaveDataAsync(encrypted, _config.Path);
         }
 
         public void SetKey(string key)

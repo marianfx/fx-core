@@ -1,6 +1,7 @@
 ﻿using FX.Core.Automation.Abstract;
 using FX.Core.Automation.Models;
 using FX.Core.Automation.Settings;
+using FX.Core.Config.Settings.Abstract;
 using FX.Core.Storage.Serialization.Abstract;
 using NLog;
 using PuppeteerSharp;
@@ -21,12 +22,14 @@ namespace FX.Core.Automation.Implementations
         protected Browser Browser;
         protected Page CurrentPage;
 
-        protected readonly ILogger Logger;
-        protected readonly IScraperSettingsManager<S> SettingsManager;
-        protected readonly IDataSerializer DataSerializer;
+        public ILogger Logger { get; set; }
+        public IBasicSettingsManager<S> SettingsManager { get; set; }
+        public IDataSerializer DataSerializer { get; set; }
+
+        public BaseScraper() { }
 
         public BaseScraper(ILogger logger,
-            IScraperSettingsManager<S> settingsManager,
+            IBasicSettingsManager<S> settingsManager,
             IDataSerializer dataSerializer)
         {
             Logger = logger;
@@ -145,7 +148,6 @@ namespace FX.Core.Automation.Implementations
                 }
             }
         }
-
 
         public virtual void Dispose()
         {

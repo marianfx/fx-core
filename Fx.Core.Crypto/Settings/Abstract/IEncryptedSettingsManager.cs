@@ -3,7 +3,7 @@ using FX.Core.Crypto.Settings.Models;
 
 namespace FX.Core.Crypto.Settings.Abstract
 {
-    public interface IEncryptedSettings<TSettings>: IBasicSettings<TSettings>
+    public interface IEncryptedSettingsManager<TSettings>: IBasicSettingsManager<TSettings>
         where TSettings : IEncryptedSettingsObject<TSettings>
     {
         /// <summary>

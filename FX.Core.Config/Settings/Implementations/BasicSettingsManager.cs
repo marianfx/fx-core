@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace FX.Core.Common.Settings.Implementations
 {
-    public class BasicSettings<TSettings>: IBasicSettings<TSettings>
+    /// <summary>
+    /// Implementation for the settings manager interface, that uses a Data Serializer abstraction to store / load data and a basic configuration object.
+    /// </summary>
+    /// <typeparam name="TSettings"></typeparam>
+    public class BasicSettingsManager<TSettings>: IBasicSettingsManager<TSettings>
         where TSettings: class, ISettingsObject
     {
         public TSettings Settings { get; set; }
@@ -15,10 +19,9 @@ namespace FX.Core.Common.Settings.Implementations
         protected readonly IDataSerializer _dataSaver;
         protected readonly BasicSettingsConfig _config;
 
-        public BasicSettings(IDataSerializer dataSaver,
-            IOptions<BasicSettingsConfig> options)
+        public BasicSettingsManager(IOptions<BasicSettingsConfig> options)
         {
-            _dataSaver = dataSaver;
+            _dataSaver = options.Value.DataSerializer;
             _config = options.Value;
         }
 
@@ -29,12 +32,12 @@ namespace FX.Core.Common.Settings.Implementations
 
         public virtual async Task<bool> CanLoadSettings()
         {
-            return await _dataSaver.DataExists(_config.SettingsPath);
+            return await _dataSaver.DataExists(_config.Path);
         }
 
         public virtual async Task LoadSettings()
         {
-            Settings = await _dataSaver.GetData<TSettings>(_config.SettingsPath);
+            Settings = await _dataSaver.GetData<TSettings>(_config.Path);
             if (Settings == null)
                 throw new System.Exception("Cannot read settings");
 
@@ -51,13 +54,13 @@ namespace FX.Core.Common.Settings.Implementations
             Settings.Validate();
 
             // save
-            await _dataSaver.SaveDataAsync(Settings, _config.SettingsPath);
+            await _dataSaver.SaveDataAsync(Settings, _config.Path);
         }
 
         public virtual async Task DeleteSettings()
         {
-            if (await _dataSaver.DataExists(_config.SettingsPath))
-                await _dataSaver.DeleteDataSilentAsync(_config.SettingsPath);
+            if (await _dataSaver.DataExists(_config.Path))
+                await _dataSaver.DeleteDataSilentAsync(_config.Path);
         }
     }
 }

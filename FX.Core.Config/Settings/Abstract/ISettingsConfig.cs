@@ -2,6 +2,6 @@
 {
     public interface ISettingsConfig
     {
-        string SettingsPath { get; set; }
+        string Path { get; set; }
     }
 }
