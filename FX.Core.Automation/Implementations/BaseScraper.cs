@@ -100,6 +100,11 @@ namespace FX.Core.Automation.Implementations
             await CurrentPage.WaitForTimeoutAsync(milliseconds);
         }
 
+        public virtual async Task WaitForElement(string elementSelector, int timeout = 600000)
+        {
+            await CurrentPage.WaitForSelectorAsync(elementSelector, new WaitForSelectorOptions { Timeout = timeout });
+        }
+
         public virtual async Task<double> GetCurrentScrollHeight(string selector)
         {
             var chSelectorFunc = ScraperConstants.FUNC_SELECT_SIMPLE.Replace("{{SPECIAL}}", ".scrollHeight");
@@ -121,14 +126,24 @@ namespace FX.Core.Automation.Implementations
             return scrollTop;
         }
 
-        public virtual async Task ScrollTo(string selector, int toHeight, bool aproximate = true)
+        public virtual async Task ScrollTo(string selector, int toHeight, bool aproximate = true, bool useWindow = false)
         {
             var newHeight = toHeight;
             if (aproximate)
                 newHeight -= 100;
 
-            var scrollBottom = ScraperConstants.FUNC_SELECT_SIMPLE.Replace("{{SPECIAL}}", ".scrollTo(0, " + newHeight + ")");
+            var scrollFuncCall = ".scrollTo(0, " + newHeight + ")";
+            var scrollBottom = (useWindow ? ScraperConstants.WINDOW_FUNCTION : ScraperConstants.FUNC_SELECT_SIMPLE).Replace("{{SPECIAL}}", scrollFuncCall);
             await CurrentPage.EvaluateFunctionAsync(scrollBottom, selector);
+        }
+
+        public virtual async Task CloseAnnoyingElements()
+        {
+            var appSettings = SettingsManager.Settings;
+            if (appSettings.ANNOYING_ELEMENTS == null || appSettings.ANNOYING_ELEMENTS.Length == 0)
+                return;
+
+            await this.CloseAnnoyingElements(appSettings.ANNOYING_ELEMENTS);
         }
 
         public virtual async Task CloseAnnoyingElements(string[] selectors)

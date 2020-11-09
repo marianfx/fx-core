@@ -17,11 +17,34 @@ namespace FX.Core.Automation.Implementations.Builders
         where T : LoginStrategyParametersBase
         where X : BaseScrapperWithLogin<P, S, T>, new()
     {
-        public ILoginStrategy<P, T> LoginStrategy { get; set; }
         public IEncryptedSettingsManager<LoginInfoSettings> UserSettingsManager { get; set; }
 
         public BaseScraperWithLoginBuilder(): base()
         {
+        }
+
+        public virtual BaseScraperWithLoginBuilder<P, S, T, X> WithBasicEncryptedUserSettingsManager(IEncryptor encryptor = null, string settingsConfigPath = "appsettings.json")
+        {
+            if (this.Scraper.DataSerializer == null)
+                throw new System.Exception("Data Serializer for the scraper must be initialized before initializing settings");
+
+            encryptor = encryptor ?? new AesHmacEncryptor();
+
+            var settingsConfig = new BasicEncryptedSettingsConfig
+            {
+                Path = settingsConfigPath,
+                DataSerializer = this.Scraper.DataSerializer,
+                Encryptor = encryptor
+            };
+
+            this.UserSettingsManager = new BasicEncryptedSettingsManager<LoginInfoSettings>(Options.Create(settingsConfig));
+            return this;
+        }
+
+        public virtual BaseScraperWithLoginBuilder<P, S, T, X> WithSpecializedUserSettingsManager(IEncryptedSettingsManager<LoginInfoSettings> userSettingsManager)
+        {
+            this.UserSettingsManager = userSettingsManager;
+            return this;
         }
 
         public virtual BaseScraperWithLoginBuilder<P, S, T, X> WithLoginStrategy(LoginStrategyTypes loginStrategy)

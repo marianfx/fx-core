@@ -8,5 +8,6 @@
         public string InputSelectorPassword { get; set; }
         public string InputTextPassword { get; set; }
         public string ButtonSelectorExecuteLogin { get; set; }
+        public string ElementSelectorForLoggedInPage { get; set; }
     }
 }

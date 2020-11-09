@@ -10,5 +10,6 @@
   "LOGIN_FORM_SELECTOR": "form[name='signUpForm']",
   "LOGIN_USER_SELECTOR": "form[name='signUpForm'] input[name = 'email']",
   "LOGIN_PASS_SELECTOR": "form[name='signUpForm'] input[name='password']",
-  "LOGIN_SUBMIT_SELECTOR": "form[name='signUpForm'] button[type='submit']"
+  "LOGIN_SUBMIT_SELECTOR": "form[name='signUpForm'] button[type='submit']",
+  "ANNOYING_ELEMENTS": []
 }

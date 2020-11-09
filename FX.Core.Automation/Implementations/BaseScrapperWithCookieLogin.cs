@@ -65,7 +65,8 @@ namespace FX.Core.Automation.Implementations
                 InputTextUser = Parameters.Username,
                 InputSelectorPassword = appSettings.LOGIN_PASS_SELECTOR,
                 InputTextPassword = Parameters.Password,
-                ButtonSelectorExecuteLogin = appSettings.LOGIN_SUBMIT_SELECTOR
+                ButtonSelectorExecuteLogin = appSettings.LOGIN_SUBMIT_SELECTOR,
+                ElementSelectorForLoggedInPage = appSettings.ELEMENT_VISIBLE_LOGGED_IN
             } as T;
         }
 

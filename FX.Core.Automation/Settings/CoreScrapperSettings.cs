@@ -18,6 +18,8 @@ namespace FX.Core.Automation.Settings
         public string LOGIN_USER_SELECTOR { get; set; }
         public string LOGIN_PASS_SELECTOR { get; set; }
         public string LOGIN_SUBMIT_SELECTOR { get; set; }
+        public string ELEMENT_VISIBLE_LOGGED_IN { get; set; }
+        public string[] ANNOYING_ELEMENTS { get; set; }
 
         public virtual bool Validate()
         {
