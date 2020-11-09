@@ -157,8 +157,6 @@ namespace FX.Core.OCR.Barcodes.Transformer.Implementations
                 {
                     docName = groups[1].Value;
                 }
-                if (groups.Length > 2 && int.TryParse(groups[2].Value, out docPage)) ;
-                if (groups.Length > 3 && int.TryParse(groups[3].Value, out docTotalPages)) ;
             }
 
             return new Tuple<string, int, int>(docName, docPage, docTotalPages);
