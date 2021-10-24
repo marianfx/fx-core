@@ -48,7 +48,7 @@ namespace FX.Core.Automation.Implementations
             var appSettings = SettingsManager.Settings;
 
             if (appSettings == null)
-                throw new Exception("Cannot instantiate scraper without settings loaded.");
+                throw new ArgumentException("Cannot instantiate scraper without settings loaded.");
 
             // initialize parameters
             Parameters = parameters;
@@ -60,7 +60,7 @@ namespace FX.Core.Automation.Implementations
             TypeOptions = new TypeOptions() { Delay = appSettings.TYPE_DELAY };
 
             // get chromium reference (not async, downloads it, blocks everything while downloading)
-            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultChromiumRevision);
             Browser = await Puppeteer.LaunchAsync(LaunchOptions);
             CurrentPage = await Browser.NewPageAsync();
             await CurrentPage.SetViewportAsync(ViewPortOptions);
@@ -90,7 +90,7 @@ namespace FX.Core.Automation.Implementations
         {
             var emailInput = await CurrentPage.WaitForSelectorAsync(selector);
             if (emailInput == null)
-                throw new Exception(string.Format("Input with selector {0} not found", selector));
+                throw new ArgumentException(string.Format("Input with selector {0} not found", selector));
 
             var appSettings = SettingsManager.Settings;
             await emailInput.TypeAsync(text, TypeOptions);
