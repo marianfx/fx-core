@@ -6,13 +6,13 @@ namespace FX.Core.Chronos.Models
 {
     public class ChronosCancellation
     {
-        private CancellationToken _requestToken;
-        private IChronosDataWrapper _chronosRef;
+        private CancellationToken? _requestToken;
+        private readonly IChronosDataWrapper _chronosRef;
         private readonly string _actionGuid;
 
         public ChronosCancellation() { }
 
-        public ChronosCancellation(string guid, IChronosDataWrapper chronosRef, CancellationToken requestToken)
+        public ChronosCancellation(string guid, IChronosDataWrapper chronosRef, CancellationToken? requestToken)
         {
             _actionGuid = guid;
             _chronosRef = chronosRef;
@@ -26,13 +26,10 @@ namespace FX.Core.Chronos.Models
             {
                 try
                 {
-                    _requestToken.ThrowIfCancellationRequested();
+                    _requestToken.Value.ThrowIfCancellationRequested();
                 }
                 catch (Exception)
                 {
-                    // clean used data
-                    GC.Collect();
-
                     // stop parent
                     throw new ChronosCancelledException("Execution cancelled.");
                 }
@@ -44,9 +41,6 @@ namespace FX.Core.Chronos.Models
 
             if (!_chronosRef.IsCalculationRunning(_actionGuid))
             {
-                // clean used data
-                GC.Collect();
-
                 // stop parent
                 throw new ChronosCancelledException("Execution cancelled.");
             }
