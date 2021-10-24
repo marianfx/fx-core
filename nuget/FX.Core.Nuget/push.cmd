@@ -1,1 +1,1 @@
-dotnet nuget push \bin\Release\mfx.core.0.0.5.nupkg --api-key oy2gqqj64dnkvnnbg3kq4qjmexew3feexkphplyymhdmde --source https://api.nuget.org/v3/index.json
+dotnet nuget push bin\Release\mfx.core.0.0.5.nupkg --api-key oy2gqqj64dnkvnnbg3kq4qjmexew3feexkphplyymhdmde --source https://api.nuget.org/v3/index.json
