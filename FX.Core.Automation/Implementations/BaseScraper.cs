@@ -81,7 +81,9 @@ namespace FX.Core.Automation.Implementations
 
         public virtual async Task ExecuteClick(string selector)
         {
-            await CurrentPage.ClickAsync(selector);
+            await CurrentPage.WaitForSelectorAsync(selector);
+            var element = await CurrentPage.QuerySelectorAsync(selector);
+            await element.ClickAsync();
         }
 
         public virtual async Task TypeInInput(string selector, string text)
