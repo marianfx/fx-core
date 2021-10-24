@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
     <PackageId>mfx.core</PackageId>
-    <Version>0.0.5</Version>
+    <Version>0.0.7</Version>
     <Authors>Marian FX</Authors>
     <Description>The repository with a collection of useful libraries, library wrappers, utility classes and extensions, written in .NET.  Includes functions related to IO, Storage, DB, Config, Automations and many more</Description>
     <PackageProjectUrl>https://github.com/marianfx/fx-core</PackageProjectUrl>
@@ -15,39 +15,39 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FX.Core.Automation\FX.Core.Automation.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Automation\FX.Core.Automation.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Automation\FX.Core.Automation</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.Chronos\FX.Core.Chronos.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Chronos\FX.Core.Chronos.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Chronos\FX.Core.Chronos</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.Common\FX.Core.Common.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Common\FX.Core.Common.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Common</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.Config\FX.Core.Config.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Config\FX.Core.Config.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Config</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fx.Core.Crypto\Fx.Core.Crypto.csproj" >
+    <ProjectReference Include="..\..\Fx.Core.Crypto\Fx.Core.Crypto.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>Fx.Core.Crypto</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.Database\FX.Core.Database.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Database\FX.Core.Database.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Database</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.IO\FX.Core.IO.csproj" >
+    <ProjectReference Include="..\..\FX.Core.IO\FX.Core.IO.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.IO</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.OCR\FX.Core.OCR.csproj" >
+    <ProjectReference Include="..\..\FX.Core.OCR\FX.Core.OCR.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.OCR</IncludeAssets>
     </ProjectReference>
-    <ProjectReference Include="..\..\FX.Core.Storage\FX.Core.Storage.csproj" >
+    <ProjectReference Include="..\..\FX.Core.Storage\FX.Core.Storage.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <IncludeAssets>FX.Core.Storage</IncludeAssets>
     </ProjectReference>
@@ -55,10 +55,20 @@
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""></None>
     <None Include="..\..\README.md" Pack="true" PackagePath=""></None>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="4.7.11" />
+    <PackageReference Include="PuppeteerSharp" Version="5.1.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.6" />
+  </ItemGroup>
   
   <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
     </ItemGroup>
   </Target>
   
