@@ -13,6 +13,7 @@ using ZXing;
 using ZXing.Common;
 using ZXing.Windows.Compatibility;
 using FX.Core.OCR.Barcodes.Abstract;
+using BitmapLuminanceSource = ZXing.BitmapLuminanceSource;
 
 namespace FX.Core.OCR.Barcodes.Implementations
 {
